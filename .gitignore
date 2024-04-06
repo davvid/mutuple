@@ -1,2 +1,6 @@
-/target
+/build
+/dist
 /env*
+/target
+/tmp
+*.egg-info

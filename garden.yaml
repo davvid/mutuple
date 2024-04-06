@@ -3,6 +3,7 @@ trees:
   mutuple:
     url: "git@github.com:davvid/mutuple.git"
     path: "${GARDEN_CONFIG_DIR}"
+
 commands:
   setup: |
     python3 -m venv env
@@ -21,3 +22,17 @@ commands:
     - check/clippy
   check/fmt: cargo fmt --check
   check/clippy: cargo clippy --all-targets -- -D warnings
+  wheel: |
+    mkdir -p tmp
+    podman pull ${image}
+    podman \
+        run \
+        --env CARGO_HOME=/tmp/cargo \
+        --env RUSTUP_HOME=/tmp/rustup \
+        --rm \
+        --volume ${TREE_PATH}:/io \
+        --volume ${TREE_PATH}/tmp:/tmp \
+        ${image} bash /io/scripts/build-wheels.sh
+
+variables:
+  image: quay.io/pypa/manylinux2014_x86_64

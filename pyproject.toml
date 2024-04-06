@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools", "setuptools-rust", "setuptools_scm[toml]>=3.4.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mutuple"
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Development Status :: 5 - Production/Stable",
+    "Operating System :: POSIX",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: Microsoft :: Windows",
+]
+dynamic = ["version"]
+
+[tool.setuptools_scm]
+
+[project.urls]
+Repository = "https://github.com/davvid/mutuple"
+
+[[tool.setuptools-rust.ext-modules]]
+target = "mutuple"
+
+[tool.distutils.bdist_wheel]
+py_limited_api = "cp37"
