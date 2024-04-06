@@ -1,0 +1,23 @@
+# Use "cargo install garden-tools" to install garden https://gitlab.com/garden-rs/garden
+trees:
+  mutuple:
+    url: "git@github.com:davvid/mutuple.git"
+    path: "${GARDEN_CONFIG_DIR}"
+commands:
+  setup: |
+    python3 -m venv env
+    env/bin/pip install maturin pytest
+  build: |
+    source env/bin/activate
+    maturin develop
+  fmt: cargo fmt
+  test: |
+    source env/bin/activate
+    python -m pytest -v tests
+  check>:
+    - build
+    - test
+    - check/fmt
+    - check/clippy
+  check/fmt: cargo fmt --check
+  check/clippy: cargo clippy --all-targets -- -D warnings
