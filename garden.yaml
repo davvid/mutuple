@@ -11,6 +11,12 @@ commands:
   build: |
     source env/bin/activate
     maturin develop
+  build/sdist: |
+    source env/bin/activate
+    maturin sdist
+  build/wheel: |
+    source env/bin/activate
+    pip wheel . --wheel-dir dist --no-deps --verbose
   fmt: cargo fmt
   test: |
     source env/bin/activate
