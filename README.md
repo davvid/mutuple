@@ -27,4 +27,8 @@ def test_mutable_tuple():
 
 ## Links
 
-* [mutuple package on pypi](https://pypi.org/project/mutuple/)
+* [mutuple source code repository](https://github.com/davvid/mutuple)
+
+* [mutuple pypi releases](https://pypi.org/project/mutuple/)
+
+* [mutuple at crates.io](https://crates.io/crates/mutuple)
