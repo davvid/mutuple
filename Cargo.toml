@@ -2,6 +2,18 @@
 name = "mutuple"
 version = "1.0.0"
 edition = "2021"
+description = "Replace items in Python's immutable tuples"
+keywords = ["python", "tuples"]
+categories = ["data-structures"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/davvid/mutuple"
+documentation = "https://docs.rs/mutuple/latest/mutuple"
+repository = "https://github.com/davvid/mutuple"
+authors = ["David Aguilar <davvid@gmail.com>"]
+
+[badges]
+maintenance = { status = "actively-developed" }
 
 [lib]
 name = "mutuple"
