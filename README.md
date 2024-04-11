@@ -9,7 +9,10 @@ yolo
 ## How?
 
 We use Rust's PyO3 crate to manipulate tuples directly using the Stable CPython API.
-Editing tuples can lead to issues but works in practice for limited use cases.
+
+## DO NOT USE MUTUPLE IN PRODUCTION!
+
+This project is just for fun. Do not use mutuple in production!
 
 ## Usage
 
@@ -27,20 +30,27 @@ def test_mutable_tuple():
 
 ## Gotchas
 
-Modifying tuples is (obviously) a wild thing to do in Python.
+Modifying tuples is a wild thing to do in Python.
 
-While there are safe ways to use this package, there are also many things
-that can go wrong. This is not an exhaustive list of gotchas; it's just a sampler.
+While there are (questionably?) safe ways to use this package, there many things
+that can go wrong when miused. This is not an exhaustive list of gotchas.
 
-* Editing a tuple changes its `hash(...)` value.
+* Editing a tuple changes its `hash(...)` value. This means that bad things will
+happen if you edit a tuple after adding it to an associative container
+(i.e. `set` objects and `dict` keys).
 
-* Editing a tuple after adding it to a `set` is questionable at best.
-Python `set` containers expect that the `hash(...)` of the objects does not change once
-the object is added, but editing a tuple effectively changes its `hash()` value.
+* Python `set` containers expect that the `hash(...)` of the objects does not change once
+the object is added to a `set`. Editing a tuple effectively changes its `hash()` value,
+which "breaks" python and creates a `set` with a `tuple` in it that cannot be removed!
 
-* Editing a tuple after using it as a key in a `dict` can lead to situations where
-the tuple's entry cannot be removed from the container. This is also due to the fact
-that the tuple's `hash(...)` value is changed.
+* Editing a tuple after using it as a key in a `dict` behaves the same way ~ the tuple's
+entry cannot be removed from the `dict`. This is also due to the fact that the tuple's
+`hash(...)` value changed after adding it to the container.
+
+## Maintenance Status
+
+`mutuple` is feature complete and stable. New features will not be added outside of
+corrections to the implementation, packaging, documentation and test suite.
 
 ## Links
 
