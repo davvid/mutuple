@@ -39,8 +39,8 @@ that can go wrong when miused. This is not an exhaustive list of gotchas.
 happen if you edit a tuple after adding it to an associative container
 (i.e. `set` objects and `dict` keys).
 
-* Python `set` containers expect that the `hash(...)` of the objects does not change once
-the object is added to a `set`. Editing a tuple effectively changes its `hash()` value,
+* Python `set` containers expect that the `hash(...)` value of an object does not change
+after the object is added to a `set`. Editing a tuple effectively changes its `hash()` value,
 which "breaks" python and creates a `set` with a `tuple` in it that cannot be removed!
 
 * Editing a tuple after using it as a key in a `dict` behaves the same way ~ the tuple's
